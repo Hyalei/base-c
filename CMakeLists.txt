@@ -21,6 +21,9 @@ set(CMAKE_C_STANDARD 99)
 # 所有 add_executable 生成的程序都会放到该目录下
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
 
+# 添加头文件路径
+include_directories(${CMAKE_SOURCE_DIR})
+
 # ================================
 # 递归查找项目中的所有 .c 文件
 # ================================
