@@ -1,6 +1,28 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef int ElementType;
+typedef ElementType* ElementPtr;
+
+void CreateElement(ElementPtr* element_ptr_ptr, ElementType value)
+{
+    *element_ptr_ptr = malloc(sizeof(ElementType));
+    if (*element_ptr_ptr == NULL)
+        return;
+    **element_ptr_ptr = value;
+}
+
+void DestroyElement(ElementPtr element_ptr)
+{
+    free(element_ptr);
+}
+
+void InitElement(ElementPtr element_ptr, ElementType value)
+{
+    if (element_ptr == NULL)
+        return;
+    *element_ptr = value;
+}
 
 void GetElementValue(ElementType element, ElementType* elementPtr)
 {

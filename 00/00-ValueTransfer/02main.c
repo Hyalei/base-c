@@ -12,7 +12,7 @@ typedef ElementType* Array;
 /// Create与Init的区别
 /// Create函数需要修改调用者中的指针变量，因此必须以“指针的地址”作为实参；
 /// 函数内部通常通过动态存储分配函数（如 malloc）申请存储空间，并将返回的首地址赋值给该指针的解引用，从而完成对象的创建。
-///
+/// 另外Create函数会用到双重指针，例如(*array_ptr)[i] = va_arg(args, ElementType);实质上就是两次解指针，与**element_ptr_ptr = value;类似
 /// @param array_ptr 数组首元素指针的地址
 /// @param count 可变参数的数量
 /// @param ... 可变参数
@@ -46,7 +46,7 @@ void DestroyArray(Array array)
 /// @param array 数组首元素指针
 /// @param count 可变参数的数量
 /// @param ... 可变参数
-void InitArray(ElementType* array, int count, ...)
+void InitArray(Array array, int count, ...)
 {
     if (array == NULL)
         return;
@@ -79,5 +79,7 @@ int main(int argc, char* argv[])
     Array array2 = malloc(ARRAY_MAX_SIZE * sizeof(ElementType));
     InitArray(array2, 4, 4, 5, 6, 7);
     PrintArray(array2);
+    printf("array2      --->%d\n", array2);
+    printf("array2[0]   --->%d\n", array2[0]);
     DestroyArray(array2);
 }
